@@ -1,8 +1,8 @@
 const ourLibrary = [
-    new Book('One Hundred Years Of Solitude', 'Gabriel Garcia Marquez', 200, 'Read'),
-    new Book('Clash of Kings', 'George R.R. Martin', 1000, 'Read'),
-    new Book('Bible', 'God', 100, 'Read'),
-    new Book('I Robot', 'Isaac Asimov', 300),
+  new Book('One Hundred Years Of Solitude', 'Gabriel Garcia Marquez', 200, 'Read'),
+  new Book('Clash of Kings', 'George R.R. Martin', 1000, 'Read'),
+  new Book('Bible', 'God', 100, 'Read'),
+  new Book('I Robot', 'Isaac Asimov', 300),
 ];
 
 function Book(title, author, pageCount, readStatus = 'not read') {
@@ -26,7 +26,11 @@ function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
   updatedLibrary.push(newEntry);
   let result = document.getElementById('result');
 
- let text = document.createTextNode(`${ourLibrary.length}`);
+  for(let books in updatedLibrary) {
+    let text = document.createTextNode(`${updatedLibrary[books].info()}`);
     result.appendChild(text);
-  return updatedLibrary;
+  };
+
+  //let text = document.createTextNode(`${ourLibrary.length}`);
+  //result.appendChild(text);
 }
