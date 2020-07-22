@@ -7,28 +7,30 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="form-container">
-      <div class="input-container">
-        <label for="title-input"> Title: </label>
-        <input type="text" id="title-input" />
+    <div class="main-container">
+      <div class="form-container">
+        <div class="input-container">
+          <label for="title-input"> Title: </label>
+          <input type="text" id="title-input" />
+        </div>
+        <div class="input-container">
+          <label for="author-input"> Author: </label>
+          <input type="text" id="author-input" />
+        </div>
+        <div class="input-container">
+          <label for="pageCount"> Number of pages: </label>
+          <input type="text" id="pageCount-input" />
+        </div>
+        <div class="input-container">
+          <label for="readStatus-input"> Read Status: </label>
+          <input type="text" id="readStatus-input" />
+        </div>
+        <button onclick="addBookToLibrary()">Hello </button>
+        <div>
       </div>
-      <div class="input-container">
-        <label for="author-input"> Author: </label>
-        <input type="text" id="author-input" />
+      <div class="books-container" id="result"></div>
       </div>
-      <div class="input-container">
-        <label for="pageCount"> Number of pages: </label>
-        <input type="text" id="pageCount-input" />
-      </div>
-      <div class="input-container">
-        <label for="readStatus-input"> Read Status: </label>
-        <input type="text" id="readStatus-input" />
-      </div>
-      <button onclick="addBookToLibrary()">Hello </button>
-      <div>
     </div>
-    <div class="books-container" id="result"></div>
-      </div>
     <script src="main.js"></script>
   </body>
 </html>
