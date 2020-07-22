@@ -21,16 +21,18 @@ function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
   author = document.getElementById('author-input').value;
   pageCount = document.getElementById('pageCount-input').value;
   readStatus = document.getElementById('readStatus-input').value;
-  let newEntry = new Book(title, author, pageCount, readStatus);
-  let updatedLibrary = ourLibrary;
+  const newEntry = new Book(title, author, pageCount, readStatus);
+  const updatedLibrary = ourLibrary;
   updatedLibrary.push(newEntry);
-  let result = document.getElementById('result');
+  const result = document.getElementById('result');
 
-  for(let books in updatedLibrary) {
+  for (const books in updatedLibrary) {
+      let el = document.createElement('p')
     let text = document.createTextNode(`${updatedLibrary[books].info()}`);
-    result.appendChild(text);
-  };
+    el.appendChild(text)
+    result.appendChild(el);
+  }
 
-  //let text = document.createTextNode(`${ourLibrary.length}`);
-  //result.appendChild(text);
+  // let text = document.createTextNode(`${ourLibrary.length}`);
+  // result.appendChild(text);
 }
