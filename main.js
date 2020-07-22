@@ -16,6 +16,16 @@ Book.prototype.info = function () {
   return `${this.title} by ${this.author}, ${this.pageCount} pages, ${this.readStatus}.`;
 };
 
+function render (updatedLibrary) {
+    for (const books in updatedLibrary) {
+        let el = document.createElement('p')
+      let text = document.createTextNode(`${updatedLibrary[books].info()}`);
+      el.appendChild(text)
+      result.appendChild(el);
+    }
+  
+}
+
 function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
   title = document.getElementById('title-input').value;
   author = document.getElementById('author-input').value;
@@ -25,14 +35,10 @@ function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
   const updatedLibrary = ourLibrary;
   updatedLibrary.push(newEntry);
   const result = document.getElementById('result');
-
-  for (const books in updatedLibrary) {
-      let el = document.createElement('p')
-    let text = document.createTextNode(`${updatedLibrary[books].info()}`);
-    el.appendChild(text)
-    result.appendChild(el);
-  }
-
   // let text = document.createTextNode(`${ourLibrary.length}`);
   // result.appendChild(text);
+  result.replaceChild(ourLibrary, updatedLibrary);
 }
+
+
+render(ourLibrary);
