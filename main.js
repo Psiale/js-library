@@ -20,24 +20,34 @@ const ourLibrary = [
   new Book('I Robot', 'Isaac Asimov', 300),
 ];
 
+const addButton = (parent, index) => {
+  const removeButton = document.createElement('button');
+  parent.appendChild(removeButton);
+  const buttonText = document.createTextNode('Remove Book');
+  removeButton.appendChild(buttonText);
+  removeButton.dataset.id = index;
+  removeButton.setAttribute('onClick', `removeBook(${index})`);
+};
+
 function render(library) {
   const newLibrary = document.getElementById('result');
-
   newLibrary.innerHTML = '';
   for (let i = 0; i < library.length; i += 1) {
     const contain = document.createElement('div');
     const para = document.createElement('p');
-    const removeButton = document.createElement('button');
     contain.appendChild(para);
-    contain.appendChild(removeButton);
-    const buttonText = document.createTextNode('Remove Book');
-    removeButton.appendChild(buttonText);
     const content = document.createTextNode(`${library[i].info()}`);
+    addButton(contain, i);
     para.appendChild(content);
-    removeButton.dataset.id = i;
     newLibrary.appendChild(contain);
   }
 }
+const removeBook = (index) => {
+  ourLibrary.splice(index, 1);
+  render(ourLibrary);
+};
+
+render(ourLibrary);
 
 function formView() {
   const form = document.getElementById('form-container');
@@ -52,15 +62,12 @@ function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
   const newEntry = new Book(title, author, pageCount, readStatus);
   const updatedLibrary = ourLibrary;
   updatedLibrary.push(newEntry);
-  const result = document.getElementById('result');
   render(updatedLibrary);
   // let text = document.createTextNode(`${ourLibrary.length}`);
   // result.appendChild(text);
   // result.replaceChild(ourLibrary, updatedLibrary);
 }
 
-//function removeBookFromLibrary(id, ourLibrary) {
+// function removeBookFromLibrary(id, ourLibrary) {
 //  ourLibrary
-//}
-
-render(ourLibrary);
+// }
