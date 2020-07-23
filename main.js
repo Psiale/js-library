@@ -75,11 +75,4 @@ function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
   const updatedLibrary = ourLibrary;
   updatedLibrary.push(newEntry);
   render(updatedLibrary);
-  // let text = document.createTextNode(`${ourLibrary.length}`);
-  // result.appendChild(text);
-  // result.replaceChild(ourLibrary, updatedLibrary);
 }
-
-// function removeBookFromLibrary(id, ourLibrary) {
-//  ourLibrary
-// }
