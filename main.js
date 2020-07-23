@@ -1,8 +1,13 @@
-function Book(title, author, pageCount, readStatus = 'not read') {
+function Book(title, author, pageCount, readStatus = 'not read.') {
   this.title = title;
   this.author = author;
   this.pageCount = pageCount;
   this.readStatus = readStatus;
+  if (!title) throw new Error('Please give the book a title.');
+  if (!author) throw new Error('Please give the book an author.');
+  if (!pageCount) throw new Error('Please give the book a page count.');
+  if (!readStatus) throw new Error('Please tell us if you have read this book or what?');
+
 }
 
 Book.prototype.info = function () {
@@ -15,15 +20,6 @@ const ourLibrary = [
   new Book('Bible', 'God', 100, 'Read'),
   new Book('I Robot', 'Isaac Asimov', 300),
 ];
-
-/* function render (updatedLibrary) {
-  for (const books in updatedLibrary) {
-    let el = document.createElement('p')
-    let text = document.createTextNode(`${updatedLibrary[books].info()}`);
-    el.appendChild(text)
-    result.appendChild(el);
-  }
-}; */
 
 function render(library) {
   const newLibrary = document.getElementById('result');
