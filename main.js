@@ -10,7 +10,7 @@ function Book(title, author, pageCount, readStatus = 'not read.') {
 }
 
 Book.prototype.info = function () {
-  return `${this.title} by ${this.author}, ${this.pageCount} pages, ${this.readStatus}.`;
+  return `${this.title} by ${this.author}, ${this.pageCount} pages, ${this.readStatus}`;
 };
 
 const ourLibrary = [
@@ -25,10 +25,17 @@ function render(library) {
 
   newLibrary.innerHTML = '';
   for (let i = 0; i < library.length; i += 1) {
+    const contain = document.createElement('div');
     const para = document.createElement('p');
+    const removeButton = document.createElement('button');
+    contain.appendChild(para);
+    contain.appendChild(removeButton);
+    const buttonText = document.createTextNode('Remove Book');
+    removeButton.appendChild(buttonText);
     const content = document.createTextNode(`${library[i].info()}`);
     para.appendChild(content);
-    newLibrary.appendChild(para);
+    removeButton.dataset.id = i;
+    newLibrary.appendChild(contain);
   }
 }
 
@@ -51,5 +58,9 @@ function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
   // result.appendChild(text);
   // result.replaceChild(ourLibrary, updatedLibrary);
 }
+
+//function removeBookFromLibrary(id, ourLibrary) {
+//  ourLibrary
+//}
 
 render(ourLibrary);
