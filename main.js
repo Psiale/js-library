@@ -7,7 +7,6 @@ function Book(title, author, pageCount, readStatus = 'not read.') {
   if (!author) throw new Error('Please give the book an author.');
   if (!pageCount) throw new Error('Please give the book a page count.');
   if (!readStatus) throw new Error('Please tell us if you have read this book or what?');
-
 }
 
 Book.prototype.info = function () {
@@ -31,6 +30,11 @@ function render(library) {
     para.appendChild(content);
     newLibrary.appendChild(para);
   }
+}
+
+function formView() {
+  const form = document.getElementById('form-container');
+  form.classList.toggle('form-container-show');
 }
 
 function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {

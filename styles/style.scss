@@ -8,7 +8,7 @@ body {
     display: flex;
     height: 90%;
     width: 95%;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-flow: column nowrap;
     background-color: #dcdcdc;
@@ -17,7 +17,8 @@ body {
 }
 
 .form-container {
-    display: flex;
+    display: none;
+    margin-top: 80px;
     height: 50%;
     flex-flow: column nowrap;
     justify-content: space-evenly;
@@ -26,6 +27,19 @@ body {
         display: flex;
         flex-direction: column;
     }
+}
+
+
+.form-container-show {
+    display: flex ;
+}
+
+.show-form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
 }
 
 .books-container {
