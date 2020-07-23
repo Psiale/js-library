@@ -4,6 +4,11 @@ body {
   height: 100%;
 }
 
+$background-color: #eeecda; //main-color
+$orange-color: #f08a5d; //accent-color
+$red-color: #b83b5e; // main-text-color
+$purple-color: #6a2c70; // whareva
+
 .main-container {
   display: flex;
   height: 90%;
@@ -21,17 +26,14 @@ body {
   margin-top: 80px;
   height: 50%;
   flex-flow: column nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-
-  .input-container {
-    display: flex;
-    flex-direction: column;
-  }
 }
 
 .form-container-show {
   display: flex;
+}
+
+#author-input {
+    width: 60%;
 }
 
 .show-form {
