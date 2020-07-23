@@ -2,34 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link href="styles/output.css" type="text/css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/style.css" />
     <title>Document</title>
   </head>
   <body>
     <div class="main-container">
-      <div class="show-form"><button onclick="formView()">Show form</button></div>
-      <div class=" form-container" id="form-container">
-        <div class="input-container">
+      <div class="show-form"><button class="bg-purple-300" onclick="formView()">Show form</button></div>
+      <div class=" p-64 form-container w-full justify-evenly items-center absolute z-10 bg-red-500" id="form-container">
+        <div class="flex flex-col">
           <label for="title-input"> Title: </label>
           <input type="text" required="required" id="title-input" />
         </div>
-        <div class="input-container">
+        <div class=" flex flex-col items-center w-full">
           <label for="author-input"> Author: </label>
-          <input type="text" required="required" id="author-input" />
+          <input class="h-8 " type="text" required="required" id="author-input" />
         </div>
-        <div class="input-container">
+        <div class="flex flex-col">
           <label for="pageCount"> Number of pages: </label>
           <input type="number" required="required" id="pageCount-input" />
         </div>
-        <div class="input-container">
+        <div class="flex flex-col">
           <label for="readStatus-input"> Read Status: </label>
           <input type="text" required="required" id="readStatus-input" />
         </div>
         <button onclick="addBookToLibrary()">Hello </button>
-      <div class="books-container" id="result"></div>
-      </div>
     </div>
+    <div class="books-container" id="result"></div>
+      </div>
     <script src="main.js"></script>
   </body>
 </html>
