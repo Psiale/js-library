@@ -20,13 +20,19 @@ const ourLibrary = [
   new Book('I Robot', 'Isaac Asimov', 300),
 ];
 
-const addButton = (parent, index) => {
+const addButtons = (parent, index) => {
   const removeButton = document.createElement('button');
+  const readButton = document.createElement('button');
+  parent.appendChild(readButton);
   parent.appendChild(removeButton);
   const buttonText = document.createTextNode('Remove Book');
+  const readButtonText = document.createTextNode('Change Read Status');
   removeButton.appendChild(buttonText);
+  readButton.appendChild(readButtonText);
   removeButton.dataset.id = index;
+  readButton.dataset.id = index;
   removeButton.setAttribute('onClick', `removeBook(${index})`);
+  readButton.setAttribute('onClick', `changeReadStatus(${index})`);
 };
 
 function render(library) {
@@ -35,15 +41,21 @@ function render(library) {
   for (let i = 0; i < library.length; i += 1) {
     const contain = document.createElement('div');
     const para = document.createElement('p');
-    contain.appendChild(para);
     const content = document.createTextNode(`${library[i].info()}`);
-    addButton(contain, i);
+    contain.appendChild(para);
+    addButtons(contain, i);
     para.appendChild(content);
     newLibrary.appendChild(contain);
   }
 }
+
 const removeBook = (index) => {
   ourLibrary.splice(index, 1);
+  render(ourLibrary);
+};
+
+const changeReadStatus = (index) => {
+  ourLibrary[index].readStatus === 'Read' ? ourLibrary[index].readStatus = 'Not Read' : ourLibrary[index].readStatus = 'Read';
   render(ourLibrary);
 };
 
