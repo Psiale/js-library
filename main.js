@@ -30,8 +30,6 @@ const ourLibrary = [
   new Book('I Robot', 'Isaac Asimov', 300),
 ];
 
- //stores the value associated with a key.
-
 const addButtons = (parent, index) => {
   const buttonContainer = document.createElement('div');
   buttonContainer.classList.add('book-buttons');
@@ -52,6 +50,15 @@ const addButtons = (parent, index) => {
 
 
 function render(library) {
+  // Check for saved wishlist items
+  // if (localStorage.length > 0) {
+  library = JSON.parse(localStorage.getItem('bookItems') || '[]');
+  // }
+
+
+  // If there are any saved items, update our list
+
+
   const newLibrary = document.getElementById('result');
   newLibrary.innerHTML = '';
   for (let i = 0; i < library.length; i += 1) {
@@ -78,11 +85,11 @@ function render(library) {
     contain.classList.add('book-item');
     addButtons(contain, i);
   }
-  localStorage.setItem('setLibrary', library);
 }
 
 const removeBook = (index) => {
   ourLibrary.splice(index, 1);
+  localStorage.setItem('bookItems', JSON.stringify(ourLibrary));
   render(ourLibrary);
 };
 
@@ -92,6 +99,9 @@ const changeReadStatus = (index) => {
 };
 
 render(ourLibrary);
+let json = JSON.stringify(ourLibrary);
+console.log(json);
+console.log(JSON.parse(json));
 
 function formView() {
   const form = document.getElementById('form-container');
@@ -113,6 +123,8 @@ function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
   const newEntry = new Book(title, author, pageCount, readStatus);
   const updatedLibrary = ourLibrary;
   updatedLibrary.push(newEntry);
+  let json = JSON.stringify(updatedLibrary);
+  localStorage.setItem('bookItems', json);
   formView();
   render(updatedLibrary);
   cleanForm();
