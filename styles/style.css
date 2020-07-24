@@ -66,7 +66,6 @@ body {
   display: -ms-flexbox;
   display: flex;
   height: 60vh;
-  width: 80%;
 }
 
 .form-container-show input {
@@ -133,6 +132,19 @@ body {
   height: auto;
   text-align: center;
   padding: 15px;
+}
+
+@media only screen and (min-width: 640px) {
+  .books-container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+  }
+  .books-container .book-item {
+    width: auto;
+    margin-right: 20px;
+  }
 }
 
 .book-item {

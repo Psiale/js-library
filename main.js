@@ -23,7 +23,6 @@ Book.prototype.readStatus_info = function () {
 };
 
 
-
 const ourLibrary = [
   new Book('One Hundred Years Of Solitude', 'Gabriel Garcia Marquez', 200, 'Read'),
   new Book('Clash of Kings', 'George R.R. Martin', 1000, 'Read'),
@@ -31,9 +30,11 @@ const ourLibrary = [
   new Book('I Robot', 'Isaac Asimov', 300),
 ];
 
+ //stores the value associated with a key.
+
 const addButtons = (parent, index) => {
   const buttonContainer = document.createElement('div');
-  buttonContainer.classList.add('book-buttons')
+  buttonContainer.classList.add('book-buttons');
   const removeButton = document.createElement('button');
   const readButton = document.createElement('button');
   buttonContainer.appendChild(readButton);
@@ -64,7 +65,7 @@ function render(library) {
     const content_author = document.createTextNode(`${library[i].author_info()}`);
     const content_pages = document.createTextNode(`${library[i].pageCount_info()}`);
     const content_status = document.createTextNode(`${library[i].readStatus_info()}`);
-  
+
     heading.appendChild(content_heading);
     author.appendChild(content_author);
     pages.appendChild(content_pages);
@@ -77,6 +78,7 @@ function render(library) {
     contain.classList.add('book-item');
     addButtons(contain, i);
   }
+  localStorage.setItem('setLibrary', library);
 }
 
 const removeBook = (index) => {
