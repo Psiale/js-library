@@ -9,9 +9,6 @@ function Book(title, author, pageCount, readStatus = 'not read.') {
   if (!readStatus) throw new Error('Please tell us if you have read this book or what?');
 }
 
-Book.prototype.info = function () {
-  return `${this.title} by ${this.author}, ${this.pageCount} pages, ${this.readStatus}`;
-};
 Book.prototype.title_info = function () {
   return `${this.title}`;
 };
@@ -19,7 +16,7 @@ Book.prototype.author_info = function () {
   return `${this.author}`;
 };
 Book.prototype.pageCount_info = function () {
-  return `${this.pageCount}`;
+  return `${this.pageCount} pages`;
 };
 Book.prototype.readStatus_info = function () {
   return `${this.readStatus}`;
@@ -35,12 +32,15 @@ const ourLibrary = [
 ];
 
 const addButtons = (parent, index) => {
+  const buttonContainer = document.createElement('div');
+  buttonContainer.classList.add('book-buttons')
   const removeButton = document.createElement('button');
   const readButton = document.createElement('button');
-  parent.appendChild(readButton);
-  parent.appendChild(removeButton);
+  buttonContainer.appendChild(readButton);
+  buttonContainer.appendChild(removeButton);
+  parent.appendChild(buttonContainer);
   const buttonText = document.createTextNode('Remove Book');
-  const readButtonText = document.createTextNode('Change Read Status');
+  const readButtonText = document.createTextNode('Read Book?');
   removeButton.appendChild(buttonText);
   readButton.appendChild(readButtonText);
   removeButton.dataset.id = index;
@@ -64,7 +64,7 @@ function render(library) {
     const content_author = document.createTextNode(`${library[i].author_info()}`);
     const content_pages = document.createTextNode(`${library[i].pageCount_info()}`);
     const content_status = document.createTextNode(`${library[i].readStatus_info()}`);
-    addButtons(contain, i);
+  
     heading.appendChild(content_heading);
     author.appendChild(content_author);
     pages.appendChild(content_pages);
@@ -74,6 +74,8 @@ function render(library) {
     contain.appendChild(pages);
     contain.appendChild(status);
     newLibrary.appendChild(contain);
+    contain.classList.add('book-item');
+    addButtons(contain, i);
   }
 }
 

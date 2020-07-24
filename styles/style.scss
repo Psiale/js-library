@@ -1,8 +1,15 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
 @import url(https://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,regular,italic,700,700italic,900,900italic);
+
+$background-color: #eeecda; //main-color
+$orange-color: #f08a5d; //accent-color
+$red-color: #b83b5e; // main-text-color
+$purple-color: #6a2c70; // whareva
+
+
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -12,12 +19,8 @@ body {
   color: #303030;
   width: 100%;
   height: 100%;
+  background-color: $background-color;
 }
-
-$background-color: #eeecda; //main-color
-$orange-color: #f08a5d; //accent-color
-$red-color: #b83b5e; // main-text-color
-$purple-color: #6a2c70; // whareva
 
 .main-container {
   display: flex;
@@ -26,9 +29,21 @@ $purple-color: #6a2c70; // whareva
   justify-content: flex-start;
   align-items: center;
   flex-flow: column nowrap;
-  background-color: #dcdcdc;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 20px 0;
+}
+
+.show-form {
+
+  button {
+    background-color: #6a2c70;
+    color: #eeecda;
+    font: 600 18px/18px 'Poppins', sans-serif;
+    padding: 14px 18px;
+    border-radius: 3px;
+    outline: none;
+    box-shadow: #808080 0 0 8px -2px;
+  }
 }
 
 .form-container {
@@ -37,10 +52,10 @@ $purple-color: #6a2c70; // whareva
   height: 50%;
   flex-flow: column nowrap;
   background-color: $orange-color;
-  -webkit-box-shadow: 0px 2px 10px -3px rgba(97,56,40,1);
-  -moz-box-shadow: 0px 2px 10px -3px rgba(97,56,40,1);
-  box-shadow: 0px 2px 10px -3px rgba(97,56,40,1);
-  border: 1px solid #D27951;
+  -webkit-box-shadow: 0 2px 10px -3px rgba(97, 56, 40, 1);
+  -moz-box-shadow: 0 2px 10px -3px rgba(97, 56, 40, 1);
+  box-shadow: 0 2px 10px -3px rgba(97, 56, 40, 1);
+  border: 1px solid #d27951;
 }
 
 .form-container-show {
@@ -65,9 +80,10 @@ $purple-color: #6a2c70; // whareva
     font-family: 'Poppins', sans-serif;
     outline: none;
     transition-duration: 0.2s;
-    border: 1px solid #5D2762;
+    border: 1px solid #5d2762;
+
     &:hover {
-      background-color: #7D4682;
+      background-color: #7d4682;
       transition-duration: 0.15s;
       transform: scale(1.02);
     }
@@ -97,6 +113,67 @@ $purple-color: #6a2c70; // whareva
   width: 100%;
   height: auto;
   text-align: center;
-  border: 1px solid #707070;
   padding: 15px;
+}
+
+.book-item {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: start;
+  height: 250px;
+  width: 80%;
+  width: auto;
+  border: 2px solid #d27951;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+
+  h1,
+  p {
+    background-color: rgba(0,0,0, 0.2);
+  }
+
+  h1 {
+    font: 500 24px/26px 'Poppins', sans-serif, monospace;
+    background-color: $red-color;
+    padding: 8px 14px;
+    color: $background-color;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font: 400 18px/22px 'Lato', sans-serif, monospace;
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+
+  .book-buttons {
+    display: flex;
+    width: 100%;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 12px;
+
+    button {
+      background-color: $purple-color;
+      color: #dcdcdc;
+      border-radius: 4px;
+      font-family: 'Poppins', sans-serif;
+      outline: none;
+      transition-duration: 0.2s;
+      border: 1px solid #5d2762;
+      padding: 8px 8px;
+  
+      &:hover {
+        background-color: #7d4682;
+        transition-duration: 0.15s;
+        transform: scale(1.02);
+      }
+    }
+  }
 }
