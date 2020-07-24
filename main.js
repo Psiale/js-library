@@ -27,7 +27,7 @@ const ourLibrary = [
   new Book('One Hundred Years Of Solitude', 'Gabriel Garcia Marquez', 200, 'Read'),
   new Book('Clash of Kings', 'George R.R. Martin', 1000, 'Read'),
   new Book('Bible', 'God', 100, 'Read'),
-  new Book('I Robot', 'Isaac Asimov', 300),
+  new Book('I Robot', 'Isaac Asimov', 300)
 ];
 
 const addButtons = (parent, index) => {
@@ -48,17 +48,8 @@ const addButtons = (parent, index) => {
   readButton.setAttribute('onClick', `changeReadStatus(${index})`);
 };
 
-
-function render(library) {
-  // Check for saved wishlist items
-  // if (localStorage.length > 0) {
-  library = JSON.parse(localStorage.getItem('bookItems') || '[]');
-  // }
-
-
-  // If there are any saved items, update our list
-
-
+function getFromStorage() {
+  let library = JSON.parse(localStorage.getItem('bookItems'));
   const newLibrary = document.getElementById('result');
   newLibrary.innerHTML = '';
   for (let i = 0; i < library.length; i += 1) {
@@ -68,10 +59,39 @@ function render(library) {
     const pages = document.createElement('p');
     const status = document.createElement('p');
 
-    const content_heading = document.createTextNode(`${library[i].title_info()}`);
-    const content_author = document.createTextNode(`${library[i].author_info()}`);
-    const content_pages = document.createTextNode(`${library[i].pageCount_info()}`);
-    const content_status = document.createTextNode(`${library[i].readStatus_info()}`);
+    const content_heading = document.createTextNode(`${library[i].title}`);
+    const content_author = document.createTextNode(`${library[i].author}`);
+    const content_pages = document.createTextNode(`${library[i].pageCount}`);
+    const content_status = document.createTextNode(`${library[i].readStatus}`);
+
+    heading.appendChild(content_heading);
+    author.appendChild(content_author);
+    pages.appendChild(content_pages);
+    status.appendChild(content_status);
+    contain.appendChild(heading);
+    contain.appendChild(author);
+    contain.appendChild(pages);
+    contain.appendChild(status);
+    newLibrary.appendChild(contain);
+    contain.classList.add('book-item');
+    addButtons(contain, i);
+  }
+}
+
+function render(library) {
+  const newLibrary = document.getElementById('result');
+  newLibrary.innerHTML = '';
+  for (let i = 0; i < library.length; i += 1) {
+    const contain = document.createElement('div');
+    const heading = document.createElement('h1');
+    const author = document.createElement('p');
+    const pages = document.createElement('p');
+    const status = document.createElement('p');
+
+    const content_heading = document.createTextNode(`${library[i].title}`);
+    const content_author = document.createTextNode(`${library[i].author}`);
+    const content_pages = document.createTextNode(`${library[i].pageCount}`);
+    const content_status = document.createTextNode(`${library[i].readStatus}`);
 
     heading.appendChild(content_heading);
     author.appendChild(content_author);
@@ -88,20 +108,18 @@ function render(library) {
 }
 
 const removeBook = (index) => {
-  ourLibrary.splice(index, 1);
-  localStorage.setItem('bookItems', JSON.stringify(ourLibrary));
-  render(ourLibrary);
+  let getLibrary = JSON.parse(localStorage.getItem('bookItems'));
+  getLibrary.splice(index, 1);
+  localStorage.setItem('bookItems', JSON.stringify(getLibrary));
+  render(getLibrary);
 };
 
 const changeReadStatus = (index) => {
-  ourLibrary[index].readStatus === 'Read' ? ourLibrary[index].readStatus = 'Not Read' : ourLibrary[index].readStatus = 'Read';
-  render(ourLibrary);
+  let getLibrary = JSON.parse(localStorage.getItem('bookItems'));
+  getLibrary[index].readStatus === 'Read' ? getLibrary[index].readStatus = 'Not Read' : getLibrary[index].readStatus = 'Read';
+  localStorage.setItem('bookItems', JSON.stringify(getLibrary));
+  render(getLibrary);
 };
-
-render(ourLibrary);
-let json = JSON.stringify(ourLibrary);
-console.log(json);
-console.log(JSON.parse(json));
 
 function formView() {
   const form = document.getElementById('form-container');
@@ -121,7 +139,7 @@ function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
   pageCount = document.getElementById('pageCount-input').value;
   readStatus = document.getElementById('readStatus-input').value;
   const newEntry = new Book(title, author, pageCount, readStatus);
-  const updatedLibrary = ourLibrary;
+  let updatedLibrary = JSON.parse(localStorage.getItem('bookItems'));
   updatedLibrary.push(newEntry);
   let json = JSON.stringify(updatedLibrary);
   localStorage.setItem('bookItems', json);
@@ -129,3 +147,6 @@ function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
   render(updatedLibrary);
   cleanForm();
 }
+
+render(ourLibrary);
+getFromStorage();
