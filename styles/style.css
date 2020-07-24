@@ -114,6 +114,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  justify-content: end;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-flow: column nowrap;
@@ -123,5 +124,12 @@ body {
   text-align: center;
   border: 1px solid #707070;
   padding: 15px;
+}
+
+.book-item {
+  background-color: red;
+  display: flex;
+  flex-flow: column;
+  height: 200px;
 }
 /*# sourceMappingURL=style.css.map */

@@ -29,9 +29,11 @@
           <label class="mb-2" for="readStatus-input"> Read Status: </label>
           <input class="h-8" type="text" required="required" id="readStatus-input" />
         </div>
-        <button class="add-book px-12 py-3" onclick="addBookToLibrary()">Add Book </button>
+        <button class="add-book px-12 py-3" onclick="addBookToLibrary(); cleanForm();">Add Book </button>
       </div>
-    <div class="books-container" id="result"></div>
+    <div class="books-container" id="result">
+      
+    </div>
       </div>
     <script src="main.js"></script>
   </body>

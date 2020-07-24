@@ -12,6 +12,20 @@ function Book(title, author, pageCount, readStatus = 'not read.') {
 Book.prototype.info = function () {
   return `${this.title} by ${this.author}, ${this.pageCount} pages, ${this.readStatus}`;
 };
+Book.prototype.title_info = function () {
+  return `${this.title}`;
+};
+Book.prototype.author_info = function () {
+  return `${this.author}`;
+};
+Book.prototype.pageCount_info = function () {
+  return `${this.pageCount}`;
+};
+Book.prototype.readStatus_info = function () {
+  return `${this.readStatus}`;
+};
+
+
 
 const ourLibrary = [
   new Book('One Hundred Years Of Solitude', 'Gabriel Garcia Marquez', 200, 'Read'),
@@ -35,16 +49,30 @@ const addButtons = (parent, index) => {
   readButton.setAttribute('onClick', `changeReadStatus(${index})`);
 };
 
+
 function render(library) {
   const newLibrary = document.getElementById('result');
   newLibrary.innerHTML = '';
   for (let i = 0; i < library.length; i += 1) {
     const contain = document.createElement('div');
-    const para = document.createElement('p');
-    const content = document.createTextNode(`${library[i].info()}`);
-    contain.appendChild(para);
+    const heading = document.createElement('h1');
+    const author = document.createElement('p');
+    const pages = document.createElement('p');
+    const status = document.createElement('p');
+
+    const content_heading = document.createTextNode(`${library[i].title_info()}`);
+    const content_author = document.createTextNode(`${library[i].author_info()}`);
+    const content_pages = document.createTextNode(`${library[i].pageCount_info()}`);
+    const content_status = document.createTextNode(`${library[i].readStatus_info()}`);
     addButtons(contain, i);
-    para.appendChild(content);
+    heading.appendChild(content_heading);
+    author.appendChild(content_author);
+    pages.appendChild(content_pages);
+    status.appendChild(content_status);
+    contain.appendChild(heading);
+    contain.appendChild(author);
+    contain.appendChild(pages);
+    contain.appendChild(status);
     newLibrary.appendChild(contain);
   }
 }
@@ -66,6 +94,13 @@ function formView() {
   form.classList.toggle('form-container-show');
 }
 
+const cleanForm = () => {
+  const title = document.getElementById('title-input').value = '';
+  const author = document.getElementById('author-input').value = '';
+  const pageCount = document.getElementById('pageCount-input').value = '';
+  const readStatus = document.getElementById('readStatus-input').value = '';
+};
+
 function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
   title = document.getElementById('title-input').value;
   author = document.getElementById('author-input').value;
@@ -74,5 +109,7 @@ function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
   const newEntry = new Book(title, author, pageCount, readStatus);
   const updatedLibrary = ourLibrary;
   updatedLibrary.push(newEntry);
+  formView();
   render(updatedLibrary);
+  cleanForm();
 }
