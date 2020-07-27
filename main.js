@@ -48,35 +48,35 @@ const addButtons = (parent, index) => {
   readButton.setAttribute('onClick', `changeReadStatus(${index})`);
 };
 
-function getFromStorage() {
-  let library = JSON.parse(localStorage.getItem('bookItems'));
-  const newLibrary = document.getElementById('result');
-  newLibrary.innerHTML = '';
-  for (let i = 0; i < library.length; i += 1) {
-    const contain = document.createElement('div');
-    const heading = document.createElement('h1');
-    const author = document.createElement('p');
-    const pages = document.createElement('p');
-    const status = document.createElement('p');
+// function getFromStorage() {
+//   let library = JSON.parse(localStorage.getItem('bookItems'));
+//   const newLibrary = document.getElementById('result');
+//   newLibrary.innerHTML = '';
+//   for (let i = 0; i < library.length; i += 1) {
+//     const contain = document.createElement('div');
+//     const heading = document.createElement('h1');
+//     const author = document.createElement('p');
+//     const pages = document.createElement('p');
+//     const status = document.createElement('p');
 
-    const content_heading = document.createTextNode(`${library[i].title}`);
-    const content_author = document.createTextNode(`${library[i].author}`);
-    const content_pages = document.createTextNode(`${library[i].pageCount}`);
-    const content_status = document.createTextNode(`${library[i].readStatus}`);
+//     const content_heading = document.createTextNode(`${library[i].title}`);
+//     const content_author = document.createTextNode(`${library[i].author}`);
+//     const content_pages = document.createTextNode(`${library[i].pageCount}`);
+//     const content_status = document.createTextNode(`${library[i].readStatus}`);
 
-    heading.appendChild(content_heading);
-    author.appendChild(content_author);
-    pages.appendChild(content_pages);
-    status.appendChild(content_status);
-    contain.appendChild(heading);
-    contain.appendChild(author);
-    contain.appendChild(pages);
-    contain.appendChild(status);
-    newLibrary.appendChild(contain);
-    contain.classList.add('book-item');
-    addButtons(contain, i);
-  }
-}
+//     heading.appendChild(content_heading);
+//     author.appendChild(content_author);
+//     pages.appendChild(content_pages);
+//     status.appendChild(content_status);
+//     contain.appendChild(heading);
+//     contain.appendChild(author);
+//     contain.appendChild(pages);
+//     contain.appendChild(status);
+//     newLibrary.appendChild(contain);
+//     contain.classList.add('book-item');
+//     addButtons(contain, i);
+//   }
+// }
 
 function render(library) {
   const newLibrary = document.getElementById('result');
@@ -149,4 +149,3 @@ function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
 }
 
 render(ourLibrary);
-getFromStorage();
