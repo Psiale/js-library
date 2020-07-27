@@ -1,7 +1,52 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,regular,italic,700,700italic,900,900italic);
+@-webkit-keyframes form-entrance {
+  0% {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+@keyframes form-entrance {
+  0% {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 html,
 body {
+  font: 300 16px/16px 'Lato', sans-serif, monospace;
+  color: #303030;
   width: 100%;
   height: 100%;
+  background-color: #eeecda;
 }
 
 .main-container {
@@ -20,9 +65,29 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-flow: column nowrap;
           flex-flow: column nowrap;
-  background-color: #dcdcdc;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 20px 0;
+}
+
+.show-form button {
+  background-color: #6a2c70;
+  color: #eeecda;
+  font: 600 18px/18px 'Poppins', sans-serif;
+  padding: 14px 18px;
+  border-radius: 3px;
+  outline: none;
+  -webkit-box-shadow: #808080 0 0 8px -2px;
+          box-shadow: #808080 0 0 8px -2px;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+}
+
+.show-form button:hover {
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+  -webkit-transition-duration: 0.15s;
+          transition-duration: 0.15s;
+  background-color: #7d4682;
 }
 
 .form-container {
@@ -33,28 +98,57 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-flow: column nowrap;
           flex-flow: column nowrap;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.form-container .input-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  background-color: #f08a5d;
+  -webkit-box-shadow: 0 2px 10px -3px #613828;
+  box-shadow: 0 2px 10px -3px #613828;
+  border: 1px solid #d27951;
+  -webkit-animation: form-entrance 0.2s cubic-bezier(0.86, 0, 0.07, 1) both;
+  animation: form-entrance 0.2s cubic-bezier(0.86, 0, 0.07, 1) both;
 }
 
 .form-container-show {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: 60vh;
+}
+
+.form-container-show input {
+  outline: none;
+}
+
+.form-container-show label {
+  text-align: left;
+  width: 100%;
+  font: 400 18px/18px 'Lato', sans-serif;
+}
+
+.form-container-show .add-book {
+  background-color: #6a2c70;
+  color: #dcdcdc;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+  border: 1px solid #5d2762;
+}
+
+.form-container-show .add-book:hover {
+  background-color: #7d4682;
+  -webkit-transition-duration: 0.15s;
+          transition-duration: 0.15s;
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
+
+#author-input,
+#title-input,
+#pageCount-input,
+#readStatus-input {
+  width: 100%;
+  border-radius: 4px;
+  padding-left: 10px;
 }
 
 .show-form {
@@ -82,7 +176,102 @@ body {
   width: 100%;
   height: auto;
   text-align: center;
-  border: 1px solid #707070;
   padding: 15px;
+}
+
+@media only screen and (min-width: 640px) {
+  .books-container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+  }
+  .books-container .book-item {
+    width: auto;
+    margin-right: 20px;
+  }
+}
+
+.book-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  height: 250px;
+  width: 80%;
+  width: auto;
+  border: 2px solid #d27951;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.book-item h1,
+.book-item p {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.book-item h1 {
+  font: 500 24px/26px 'Poppins', sans-serif, monospace;
+  background-color: #b83b5e;
+  padding: 8px 14px;
+  color: #eeecda;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.book-item p {
+  font: 400 18px/22px 'Lato', sans-serif, monospace;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+.book-item .book-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 12px;
+}
+
+.book-item .book-buttons button {
+  background-color: #6a2c70;
+  color: #dcdcdc;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+  border: 1px solid #5d2762;
+  padding: 8px 8px;
+}
+
+.book-item .book-buttons button:hover {
+  background-color: #7d4682;
+  -webkit-transition-duration: 0.15s;
+          transition-duration: 0.15s;
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
 }
 /*# sourceMappingURL=style.css.map */

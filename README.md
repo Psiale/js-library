@@ -21,7 +21,7 @@ The premise of this project is to use vanilla Javascript to create a Book Librar
 ## 🔰 Setup & Usage
 
 ### Setup
-To view the project in action, follow [this link to the live website]() or download the repository and open the HTML file with your browser of choice (we'd recommend Chrome).
+To view the project in action, follow [this link to the live website](https://rawcdn.githack.com/Psiale/js-library/feature/styles/index.html) or download the repository and open the HTML file with your browser of choice (we'd recommend Chrome).
 
 ## 🛎️ Contributions, Issues & Forking
 
