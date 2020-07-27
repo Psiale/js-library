@@ -23,32 +23,35 @@ Book.prototype.readStatus_info = function() {
 };
 
 
-const firstLibrary = [
+
+let firstLibrary = [
   new Book('One Hundred Years Of Solitude', 'Gabriel Garcia Marquez', 200, 'Read'),
   new Book('Clash of Kings', 'George R.R. Martin', 1000, 'Read'),
   new Book('Bible', 'God', 100, 'Read'),
   new Book('I Robot', 'Isaac Asimov', 300),
 ];
-localStorage.setItem('bookItems', JSON.stringify(firstLibrary));
 
 function removeBook(index) {
-  let savedArr = JSON.parse(localStorage.getItem('bookItems'));
+  const savedArr = JSON.parse(localStorage.getItem('bookItems'));
   let updatedArr = [];
-  (savedArr != null) ? updatedArr = savedArr : updatedArr = ourLibrary;
+  (savedArr != null) ? updatedArr = savedArr : updatedArr = firstLibrary;
   updatedArr.splice(index, 1);
   localStorage.setItem('bookItems', JSON.stringify(updatedArr));
   render(updatedArr);
-  ourLibrary = updatedArr;
-  return ourLibrary;
+  firstLibrary = updatedArr;
+  console.log(firstLibrary)
+  return firstLibrary;
 }
 
 const changeReadStatus = (index) => {
   const savedArr = JSON.parse(localStorage.getItem('bookItems'));
   let updatedArr = [];
-  (savedArr != null) ? updatedArr = savedArr : updatedArr = ourLibrary;
+  (savedArr != null) ? updatedArr = savedArr : updatedArr = firstLibrary;
   updatedArr[index].readStatus === 'Read' ? updatedArr[index].readStatus = 'Not Read' : updatedArr[index].readStatus = 'Read';
   localStorage.setItem('bookItems', JSON.stringify(updatedArr));
   render(updatedArr);
+  firstLibrary = updatedArr;
+  return firstLibrary;
 };
 
 const addButtons = (parent, index) => {
@@ -69,14 +72,15 @@ const addButtons = (parent, index) => {
   readButton.setAttribute('onClick', `changeReadStatus(${index})`);
 };
 
-(function firstRender() {
-  let updatedArr = [];
-  let savedArr = JSON.parse(localStorage.getItem('bookItems'));
-  (savedArr != null) ? updatedArr = savedArr : updatedArr = firstLibrary;
-  render(updatedArr);
-  console.log(updatedArr);
-  localStorage.setItem('bookItems', JSON.stringify(firstLibrary));
-}());
+//Could be remove? let's confirm
+// (function firstRender() {
+//   let updatedArr = [];
+//   let savedArr = JSON.parse(localStorage.getItem('bookItems'));
+//   (savedArr != null) ? updatedArr = savedArr : updatedArr = firstLibrary;
+//   render(updatedArr);
+//   console.log(updatedArr);
+//   localStorage.setItem('bookItems', JSON.stringify(firstLibrary));
+// }());
 
 function render(library) {
   const newLibrary = document.getElementById('result');
@@ -127,13 +131,19 @@ function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
   const newEntry = new Book(title, author, pageCount, readStatus);
   const savedArr = JSON.parse(localStorage.getItem('bookItems'));
   let updatedArr = [];
-  (savedArr !== null) ? updatedArr = ourLibrary : updatedArr = savedArr;
+  (savedArr !== null) ?  updatedArr = savedArr: updatedArr;
+  console.log(updatedArr);
   updatedArr.push(newEntry);
   const json = JSON.stringify(updatedArr);
   localStorage.setItem('bookItems', json);
   formView();
   render(updatedArr);
+  firstLibrary = updatedArr;
+  console.log(firstLibrary)
+  return firstLibrary;
   cleanForm();
 }
 
-render(ourLibrary);
+// render(firstLibrary);
+const savedArr = JSON.parse(localStorage.getItem('bookItems'));
+(savedArr != null) ? render(savedArr) : render(firstLibrary);
