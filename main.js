@@ -18,17 +18,18 @@ Book.prototype.author_info = function () {
 Book.prototype.pageCount_info = function () {
   return `${this.pageCount} pages`;
 };
-Book.prototype.readStatus_info = function () {
+Book.prototype.readStatus_info = function() {
   return `${this.readStatus}`;
 };
 
 
-const ourLibrary = [
+const firstLibrary = [
   new Book('One Hundred Years Of Solitude', 'Gabriel Garcia Marquez', 200, 'Read'),
   new Book('Clash of Kings', 'George R.R. Martin', 1000, 'Read'),
   new Book('Bible', 'God', 100, 'Read'),
   new Book('I Robot', 'Isaac Asimov', 300),
 ];
+localStorage.setItem('bookItems', JSON.stringify(firstLibrary));
 
 function removeBook(index) {
   let savedArr = JSON.parse(localStorage.getItem('bookItems'));
@@ -37,7 +38,18 @@ function removeBook(index) {
   updatedArr.splice(index, 1);
   localStorage.setItem('bookItems', JSON.stringify(updatedArr));
   render(updatedArr);
+  ourLibrary = updatedArr;
+  return ourLibrary;
 }
+
+const changeReadStatus = (index) => {
+  const savedArr = JSON.parse(localStorage.getItem('bookItems'));
+  let updatedArr = [];
+  (savedArr != null) ? updatedArr = savedArr : updatedArr = ourLibrary;
+  updatedArr[index].readStatus === 'Read' ? updatedArr[index].readStatus = 'Not Read' : updatedArr[index].readStatus = 'Read';
+  localStorage.setItem('bookItems', JSON.stringify(updatedArr));
+  render(updatedArr);
+};
 
 const addButtons = (parent, index) => {
   const buttonContainer = document.createElement('div');
@@ -56,6 +68,15 @@ const addButtons = (parent, index) => {
   removeButton.setAttribute('onClick', `removeBook(${index})`);
   readButton.setAttribute('onClick', `changeReadStatus(${index})`);
 };
+
+(function firstRender() {
+  let updatedArr = [];
+  let savedArr = JSON.parse(localStorage.getItem('bookItems'));
+  (savedArr != null) ? updatedArr = savedArr : updatedArr = firstLibrary;
+  render(updatedArr);
+  console.log(updatedArr);
+  localStorage.setItem('bookItems', JSON.stringify(firstLibrary));
+}());
 
 function render(library) {
   const newLibrary = document.getElementById('result');
@@ -85,26 +106,6 @@ function render(library) {
     addButtons(contain, i);
   }
 }
-
-(function firstRender() {
-  let updatedArr = [];
-  const savedArr = JSON.parse(localStorage.getItem('bookItems'));
-  (savedArr != null) ? updatedArr = savedArr : updatedArr = ourLibrary;
-  render(updatedArr);
-  localStorage.setItem('bookItems', JSON.stringify(ourLibrary));
-}());
-
-
-
-
-const changeReadStatus = (index) => {
-  const savedArr = JSON.parse(localStorage.getItem('bookItems'));
-  let updatedArr = [];
-  (savedArr != null) ? updatedArr = savedArr : updatedArr = ourLibrary;
-  updatedArr[index].readStatus === 'Read' ? updatedArr[index].readStatus = 'Not Read' : updatedArr[index].readStatus = 'Read';
-  localStorage.setItem('bookItems', JSON.stringify(updatedArr));
-  render(updatedArr);
-};
 
 function formView() {
   const form = document.getElementById('form-container');
