@@ -31,8 +31,7 @@ const ourLibrary = [
 ];
 
 function removeBook(index) {
-  const savedArr = JSON.parse(localStorage.getItem('bookItems'));
-
+  let savedArr = JSON.parse(localStorage.getItem('bookItems'));
   let updatedArr = [];
   (savedArr != null) ? updatedArr = savedArr : updatedArr = ourLibrary;
   updatedArr.splice(index, 1);
@@ -54,7 +53,7 @@ const addButtons = (parent, index) => {
   readButton.appendChild(readButtonText);
   removeButton.dataset.id = index;
   readButton.dataset.id = index;
-  removeButton.setAttribute('onClick', `${removeBook(index)}`);
+  removeButton.setAttribute('onClick', `removeBook(${index})`);
   readButton.setAttribute('onClick', `changeReadStatus(${index})`);
 };
 
