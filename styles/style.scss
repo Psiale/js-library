@@ -1,6 +1,24 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
 @import url(https://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,regular,italic,700,700italic,900,900italic);
 
+@keyframes form-entrance {
+  0% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+    -webkit-filter: blur(2px);
+            filter: blur(2px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+
 $background-color: #eeecda; //main-color
 $orange-color: #f08a5d; //accent-color
 $red-color: #b83b5e; // main-text-color
@@ -43,6 +61,13 @@ body {
     border-radius: 3px;
     outline: none;
     box-shadow: #808080 0 0 8px -2px;
+    transition-duration: 0.2s;
+    
+    &:hover {
+      transform: scale(1.02);
+      transition-duration: 0.15s;
+      background-color: #7d4682;
+    }
   }
 }
 
@@ -56,6 +81,8 @@ body {
   -moz-box-shadow: 0 2px 10px -3px rgba(97, 56, 40, 1);
   box-shadow: 0 2px 10px -3px rgba(97, 56, 40, 1);
   border: 1px solid #d27951;
+  -webkit-animation: form-entrance 0.2s cubic-bezier(0.860, 0.000, 0.070, 1.000) both;
+  animation: form-entrance 0.2s cubic-bezier(0.860, 0.000, 0.070, 1.000) both;
 }
 
 .form-container-show {
