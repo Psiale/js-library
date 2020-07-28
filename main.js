@@ -9,21 +9,6 @@ function Book(title, author, pageCount, readStatus = 'not read.') {
   if (!readStatus) throw new Error('Please tell us if you have read this book or what?');
 }
 
-Book.prototype.title_info = function () {
-  return `${this.title}`;
-};
-Book.prototype.author_info = function () {
-  return `${this.author}`;
-};
-Book.prototype.pageCount_info = function () {
-  return `${this.pageCount} pages`;
-};
-Book.prototype.readStatus_info = function() {
-  return `${this.readStatus}`;
-};
-
-
-
 let firstLibrary = [
   new Book('One Hundred Years Of Solitude', 'Gabriel Garcia Marquez', 200, 'Read'),
   new Book('Clash of Kings', 'George R.R. Martin', 1000, 'Read'),
@@ -39,7 +24,6 @@ function removeBook(index) {
   localStorage.setItem('bookItems', JSON.stringify(updatedArr));
   render(updatedArr);
   firstLibrary = updatedArr;
-  console.log(firstLibrary)
   return firstLibrary;
 }
 
@@ -74,7 +58,7 @@ const addButtons = (parent, index) => {
 
 (function firstRender() {
   let updatedArr = [];
-  let savedArr = JSON.parse(localStorage.getItem('bookItems'));
+  const savedArr = JSON.parse(localStorage.getItem('bookItems'));
   (savedArr != null) ? updatedArr = savedArr : updatedArr = firstLibrary;
   render(updatedArr);
   localStorage.setItem('bookItems', JSON.stringify(updatedArr));
@@ -115,10 +99,14 @@ function formView() {
 }
 
 const cleanForm = () => {
-  const title = document.getElementById('title-input').value = '';
-  const author = document.getElementById('author-input').value = '';
-  const pageCount = document.getElementById('pageCount-input').value = '';
-  const readStatus = document.getElementById('readStatus-input').value = '';
+  const title = document.getElementById('title-input');
+  title.value = '';
+  const author = document.getElementById('author-input');
+  author.value = '';
+  const pageCount = document.getElementById('pageCount-input');
+  pageCount.value = '';
+  const readStatus = document.getElementById('readStatus-input');
+  readStatus.value = '';
 };
 
 
@@ -137,8 +125,8 @@ function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
   formView();
   render(updatedArr);
   firstLibrary = updatedArr;
-  return firstLibrary;
   cleanForm();
+  return firstLibrary;
 }
 
 // render(firstLibrary);
