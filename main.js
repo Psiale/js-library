@@ -72,15 +72,13 @@ const addButtons = (parent, index) => {
   readButton.setAttribute('onClick', `changeReadStatus(${index})`);
 };
 
-//Could be remove? let's confirm
-// (function firstRender() {
-//   let updatedArr = [];
-//   let savedArr = JSON.parse(localStorage.getItem('bookItems'));
-//   (savedArr != null) ? updatedArr = savedArr : updatedArr = firstLibrary;
-//   render(updatedArr);
-//   console.log(updatedArr);
-//   localStorage.setItem('bookItems', JSON.stringify(firstLibrary));
-// }());
+(function firstRender() {
+  let updatedArr = [];
+  let savedArr = JSON.parse(localStorage.getItem('bookItems'));
+  (savedArr != null) ? updatedArr = savedArr : updatedArr = firstLibrary;
+  render(updatedArr);
+  localStorage.setItem('bookItems', JSON.stringify(updatedArr));
+}());
 
 function render(library) {
   const newLibrary = document.getElementById('result');
@@ -123,6 +121,7 @@ const cleanForm = () => {
   const readStatus = document.getElementById('readStatus-input').value = '';
 };
 
+
 function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
   title = document.getElementById('title-input').value;
   author = document.getElementById('author-input').value;
@@ -131,15 +130,13 @@ function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
   const newEntry = new Book(title, author, pageCount, readStatus);
   const savedArr = JSON.parse(localStorage.getItem('bookItems'));
   let updatedArr = [];
-  (savedArr !== null) ?  updatedArr = savedArr: updatedArr;
-  console.log(updatedArr);
+  (savedArr !== null) ? updatedArr = savedArr : updatedArr;
   updatedArr.push(newEntry);
   const json = JSON.stringify(updatedArr);
   localStorage.setItem('bookItems', json);
   formView();
   render(updatedArr);
   firstLibrary = updatedArr;
-  console.log(firstLibrary)
   return firstLibrary;
   cleanForm();
 }
