@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="styles/output.css" type="text/css" rel="stylesheet" />
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.0/firebase-app.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="show-form">
+        <button onclick="formView()">Add New Book</button>
+      </div>
+      <div class="p-10 form-container w-4/5 sm:w-2/5 rounded justify-evenly items-start fixed z-10" id="form-container">
+        <div class="flex flex-col items-center w-4/5 mb-3">
+          <label class="mb-2" for="title-input"> Title: </label>
+          <input class="h-8 w-full" type="text" required="required" id="title-input" />
+        </div>
+        <div class=" flex flex-col items-center w-4/5  mb-3">
+          <label class="mb-2" for="author-input"> Author: </label>
+          <input class="h-8" type="text" required="required" id="author-input" />
+        </div>
+        <div class="flex flex-col items-center w-4/5  mb-3">
+          <label class="mb-2" for="pageCount"> Number of pages: </label>
+          <input class="h-8" type="number" required="required" id="pageCount-input" />
+        </div>
+        <div class="flex flex-col items-center w-4/5  mb-3">
+          <label class="mb-2" for="readStatus-input"> Read Status: </label>
+          <input class="h-8" type="text" required="required" id="readStatus-input" />
+        </div>
+        <button class="add-book px-12 py-3" onclick="addBookToLibrary(); cleanForm();">Add Book </button>
+      </div>
+    <div class="books-container" id="result">
+
+    </div>
+      </div>
+      
+    <script src="main.js"></script>
+  </body>
+</html>

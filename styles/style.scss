@@ -1,0 +1,212 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,regular,italic,700,700italic,900,900italic);
+
+@keyframes form-entrance {
+  0% {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-filter: blur(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+$background-color: #eeecda; //main-color
+$orange-color: #f08a5d; //accent-color
+$red-color: #b83b5e; // main-text-color
+$purple-color: #6a2c70; // whareva
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font: 300 16px/16px 'Lato', sans-serif, monospace;
+  color: #303030;
+  width: 100%;
+  height: 100%;
+  background-color: $background-color;
+}
+
+.main-container {
+  display: flex;
+  height: 90%;
+  width: 95%;
+  justify-content: flex-start;
+  align-items: center;
+  flex-flow: column nowrap;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.show-form {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: auto;
+
+  button {
+    background-color: #6a2c70;
+    color: #eeecda;
+    font: 600 18px/18px 'Poppins', sans-serif;
+    padding: 14px 18px;
+    border-radius: 3px;
+    outline: none;
+    box-shadow: #808080 0 0 8px -2px;
+    transition-duration: 0.2s;
+
+    &:hover {
+      transform: scale(1.02);
+      transition-duration: 0.15s;
+      background-color: #7d4682;
+    }
+  }
+}
+
+.form-container {
+  display: none;
+  margin-top: 80px;
+  height: 50%;
+  flex-flow: column nowrap;
+  background-color: $orange-color;
+  -webkit-box-shadow: 0 2px 10px -3px rgba(97, 56, 40, 1);
+  -moz-box-shadow: 0 2px 10px -3px rgba(97, 56, 40, 1);
+  box-shadow: 0 2px 10px -3px rgba(97, 56, 40, 1);
+  border: 1px solid #d27951;
+  -webkit-animation: form-entrance 0.2s cubic-bezier(0.86, 0, 0.07, 1) both;
+  animation: form-entrance 0.2s cubic-bezier(0.86, 0, 0.07, 1) both;
+}
+
+.form-container-show {
+  display: flex;
+  height: 60vh;
+
+  input {
+    outline: none;
+  }
+
+  label {
+    text-align: left;
+    width: 100%;
+    font: 400 18px/18px 'Lato', sans-serif;
+  }
+
+  .add-book {
+    background-color: $purple-color;
+    color: #dcdcdc;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    transition-duration: 0.2s;
+    border: 1px solid #5d2762;
+
+    &:hover {
+      background-color: #7d4682;
+      transition-duration: 0.15s;
+      transform: scale(1.02);
+    }
+  }
+}
+
+#author-input,
+#title-input,
+#pageCount-input,
+#readStatus-input {
+  width: 100%;
+  border-radius: 4px;
+  padding-left: 10px;
+}
+
+.books-container {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  padding: 15px;
+}
+
+@media only screen and (min-width: 640px) {
+  .books-container {
+    flex-flow: row wrap;
+
+    .book-item {
+      width: auto;
+      margin-right: 20px;
+    }
+  }
+}
+
+.book-item {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: start;
+  height: 250px;
+  width: 80%;
+  width: auto;
+  border: 2px solid #d27951;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+
+  h1,
+  p {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  h1 {
+    font: 500 24px/26px 'Poppins', sans-serif, monospace;
+    background-color: $red-color;
+    padding: 8px 14px;
+    color: $background-color;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font: 400 18px/22px 'Lato', sans-serif, monospace;
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+
+  .book-buttons {
+    display: flex;
+    width: 100%;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 12px;
+
+    button {
+      background-color: $purple-color;
+      color: #dcdcdc;
+      border-radius: 4px;
+      font-family: 'Poppins', sans-serif;
+      outline: none;
+      transition-duration: 0.2s;
+      border: 1px solid #5d2762;
+      padding: 8px 8px;
+
+      &:hover {
+        background-color: #7d4682;
+        transition-duration: 0.15s;
+        transform: scale(1.02);
+      }
+    }
+  }
+}
