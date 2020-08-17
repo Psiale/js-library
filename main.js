@@ -1,17 +1,18 @@
-function Book(title, author, pageCount, readStatus = 'not read.') {
-  this.title = title;
-  this.author = author;
-  this.pageCount = pageCount;
-  this.readStatus = readStatus;
-  if (!title) throw new Error('Please give the book a title.');
-  if (!author) throw new Error('Please give the book an author.');
-  if (!pageCount) throw new Error('Please give the book a page count.');
-  if (!readStatus) throw new Error('Please tell us if you have read this book or what?');
+const form = document.getElementById('form-container');
+
+class Book {
+  constructor(title, author, pageCount, readStatus) {
+    this.title = title;
+    this.author = author;
+    this.pageCount = pageCount;
+    this.readStatus = readStatus;
+  }
+
+  info() {
+    return `${this.title} by ${this.author}, ${this.pageCount} pages, ${this.readStatus}`;
+  }
 }
 
-Book.prototype.info = function () {
-  return `${this.title} by ${this.author}, ${this.pageCount} pages, ${this.readStatus}`;
-};
 
 const ourLibrary = [
   new Book('One Hundred Years Of Solitude', 'Gabriel Garcia Marquez', 200, 'Read'),
@@ -62,9 +63,10 @@ const changeReadStatus = (index) => {
 render(ourLibrary);
 
 function formView() {
-  const form = document.getElementById('form-container');
   form.classList.toggle('form-container-show');
 }
+
+form.addEventListener('click', formView);
 
 function addBookToLibrary(title, author, pageCount, readStatus = 'not read') {
   title = document.getElementById('title-input').value;
